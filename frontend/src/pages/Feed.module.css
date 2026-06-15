@@ -1,0 +1,99 @@
+.header {
+  text-align: center;
+  padding: 56px 0 40px;
+  position: relative;
+}
+
+.clover {
+  font-size: 56px;
+  display: block;
+  margin-bottom: 16px;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px rgba(0,255,136,0.8)) drop-shadow(0 0 32px rgba(0,255,136,0.4));
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(0,255,136,0.7)) drop-shadow(0 0 28px rgba(0,255,136,0.3)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 22px rgba(0,255,136,1)) drop-shadow(0 0 44px rgba(0,255,136,0.6)); }
+}
+
+.title {
+  font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  color: var(--neon);
+  text-shadow: 0 0 16px var(--neon), 0 0 40px rgba(0,255,136,0.5);
+  animation: neon-flicker 8s ease-in-out infinite;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 구분선 */
+.header::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  margin: 18px auto 0;
+  box-shadow: 0 0 8px var(--neon);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.filterBtn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.filterBtn:hover {
+  border-color: var(--neon-mid);
+  color: var(--neon);
+}
+.filterBtn[data-active="true"] {
+  background: rgba(0,255,136,0.1);
+  border-color: var(--neon);
+  color: var(--neon);
+  text-shadow: 0 0 8px var(--neon);
+  box-shadow: 0 0 12px rgba(0,255,136,0.15);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding-bottom: 60px;
+  align-items: start;
+}
+.list > *:first-child { grid-column: 1 / -1; }
+
+@media (max-width: 560px) {
+  .list { grid-template-columns: 1fr; }
+  .list > *:first-child { grid-column: auto; }
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 80px 0;
+  font-size: 14px;
+  grid-column: 1 / -1;
+}

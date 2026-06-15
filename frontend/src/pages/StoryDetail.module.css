@@ -1,0 +1,236 @@
+.back {
+  background: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 20px 0 14px;
+  display: block;
+  letter-spacing: 0.5px;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+.back:hover { color: var(--neon); text-shadow: 0 0 8px var(--neon); }
+
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  opacity: 0.6;
+}
+
+.cardInner {
+  padding: 32px 28px;
+  position: relative;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.category {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--neon);
+  border: 1px solid rgba(0,255,136,0.4);
+  background: rgba(0,255,136,0.08);
+  padding: 4px 12px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(0,255,136,0.6);
+}
+
+.date { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+.title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.content {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+  margin-bottom: 28px;
+}
+
+.scores {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 24px;
+}
+
+.scoreItem { display: flex; flex-direction: column; gap: 8px; }
+.label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* Luck Score 패널 */
+.luck {
+  background: rgba(0,255,136,0.04);
+  border: 1px solid rgba(0,255,136,0.2);
+  border-radius: 6px;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.luck::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+}
+
+.luckLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--neon);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px var(--neon);
+}
+
+.luckScore {
+  font-family: 'Orbitron', monospace;
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--neon);
+  line-height: 1;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px var(--neon), 0 0 40px rgba(0,255,136,0.4);
+}
+
+.luckBar {
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  height: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0,255,136,0.15);
+}
+.luckFill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,255,136,0.6), var(--neon));
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 10px var(--neon);
+}
+
+.luckConf {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 투표 */
+.voteBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  position: relative;
+}
+.voteBox::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.3), transparent);
+}
+
+.voteInner {
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.voteTitle {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+.voteBtns { display: flex; gap: 12px; justify-content: center; }
+
+.voteUp {
+  background: rgba(0,255,136,0.1);
+  color: var(--neon);
+  border: 1.5px solid rgba(0,255,136,0.5) !important;
+  border: none;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 13px 28px;
+  border-radius: 4px;
+  text-shadow: 0 0 8px rgba(0,255,136,0.6);
+  box-shadow: 0 0 14px rgba(0,255,136,0.1);
+  transition: all 0.2s;
+}
+.voteUp:hover:not(:disabled) {
+  background: rgba(0,255,136,0.18);
+  box-shadow: 0 0 20px rgba(0,255,136,0.25);
+  transform: translateY(-2px);
+}
+
+.voteDown {
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 13px 28px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.voteDown:hover:not(:disabled) {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.voted {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--neon);
+  text-shadow: 0 0 8px var(--neon);
+  letter-spacing: 1px;
+}
+
+.empty { text-align: center; color: var(--text-muted); padding: 80px 0; }

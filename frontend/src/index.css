@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&family=Orbitron:wght@700;900&family=Black+Han+Sans&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --neon: #00ff88;
+  --neon-dim: rgba(0,255,136,0.15);
+  --neon-mid: rgba(0,255,136,0.4);
+  --neon-glow: 0 0 8px #00ff88, 0 0 20px rgba(0,255,136,0.5);
+  --gold: #ffd700;
+  --gold-glow: 0 0 8px #ffd700, 0 0 24px rgba(255,215,0,0.5);
+  --silver: #b0bec5;
+  --bronze: #cd7f32;
+
+  --bg: #070b14;
+  --bg-card: #0d1526;
+  --bg-mid: #111827;
+  --bg-overlay: rgba(13,21,38,0.95);
+
+  --text: #e2f0ff;
+  --text-muted: #4a6080;
+  --text-dim: #8899aa;
+  --border: rgba(0,255,136,0.18);
+  --border-bright: rgba(0,255,136,0.5);
+
+  --grad: linear-gradient(135deg, #00ff88, #00ccff);
+  --grad-gold: linear-gradient(135deg, #ffd700, #ff9a00);
+}
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 배경 격자 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 배경 보라 빛 오브 */
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,136,0.04) 0%, transparent 70%);
+  bottom: -200px;
+  right: -100px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
+
+a { text-decoration: none; color: inherit; }
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  transition: all 0.2s;
+}
+button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+input, textarea, select {
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  outline: none;
+  width: 100%;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input::placeholder, textarea::placeholder { color: var(--text-muted); }
+input:focus, textarea:focus, select:focus {
+  border-color: var(--neon);
+  box-shadow: 0 0 0 3px rgba(0,255,136,0.1), var(--neon-glow);
+}
+select option { background: var(--bg-mid); color: var(--text); }
+
+.container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 글리치 텍스트 효과 ── */
+@keyframes glitch-clip-1 {
+  0%   { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); }
+  20%  { clip-path: inset(70% 0 5% 0);  transform: translate(4px, 0); }
+  40%  { clip-path: inset(45% 0 30% 0); transform: translate(-3px, 0); }
+  60%  { clip-path: inset(10% 0 75% 0); transform: translate(3px, 0); }
+  80%  { clip-path: inset(55% 0 20% 0); transform: translate(-2px, 0); }
+  100% { clip-path: inset(20% 0 60% 0); transform: translate(0, 0); }
+}
+@keyframes glitch-clip-2 {
+  0%   { clip-path: inset(60% 0 10% 0); transform: translate(4px, 0); color: #ff003c; }
+  25%  { clip-path: inset(5% 0 70% 0);  transform: translate(-4px, 0); color: #00ffff; }
+  50%  { clip-path: inset(35% 0 40% 0); transform: translate(3px, 0); color: #ff003c; }
+  75%  { clip-path: inset(80% 0 2% 0);  transform: translate(-3px, 0); color: #00ffff; }
+  100% { clip-path: inset(60% 0 10% 0); transform: translate(0, 0); }
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch:hover::before {
+  opacity: 0.85;
+  animation: glitch-clip-1 0.25s steps(1) infinite;
+  color: #00ffff;
+}
+.glitch:hover::after {
+  opacity: 0.85;
+  animation: glitch-clip-2 0.25s steps(1) infinite;
+  color: #ff003c;
+}
+
+/* ── 네온 플리커 ── */
+@keyframes neon-flicker {
+  0%, 95%, 100% { opacity: 1; text-shadow: 0 0 12px var(--neon), 0 0 28px rgba(0,255,136,0.4); }
+  96%            { opacity: 0.4; text-shadow: none; }
+  97%            { opacity: 1; text-shadow: 0 0 12px var(--neon); }
+  98%            { opacity: 0.2; text-shadow: none; }
+  99%            { opacity: 1; text-shadow: 0 0 20px var(--neon), 0 0 40px rgba(0,255,136,0.6); }
+}
+
+/* ── 전기 보더 ── */
+@keyframes electric-border {
+  0%   { box-shadow: 0 0 4px var(--neon), inset 0 0 4px rgba(0,255,136,0.1); }
+  25%  { box-shadow: 0 0 12px var(--neon), 2px 0 16px #00ffff, inset 0 0 8px rgba(0,255,136,0.15); }
+  50%  { box-shadow: 0 0 6px var(--neon), -2px 0 12px #ff003c, inset 0 0 4px rgba(0,255,136,0.1); }
+  75%  { box-shadow: 0 0 16px var(--neon), 3px 0 20px #00ffff, inset 0 0 10px rgba(0,255,136,0.2); }
+  100% { box-shadow: 0 0 4px var(--neon), inset 0 0 4px rgba(0,255,136,0.1); }
+}
+
+/* ── 스캔라인 슬라이드 ── */
+@keyframes scanline {
+  0%   { top: -10%; }
+  100% { top: 110%; }
+}
+
+/* 카드 hover 치지직 공통 */
+a:hover .glitch-target,
+button:hover .glitch-target {
+  animation: electric-border 0.15s steps(1) infinite;
+}
+
+/* 공통 네온 뱃지 */
+.neon-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--neon);
+  border: 1.5px solid var(--neon);
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px var(--neon);
+  box-shadow: inset 0 0 8px rgba(0,255,136,0.08);
+}

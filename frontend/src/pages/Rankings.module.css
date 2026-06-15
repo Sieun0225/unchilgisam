@@ -1,0 +1,248 @@
+.header {
+  text-align: center;
+  padding: 48px 0 32px;
+  position: relative;
+}
+
+.crown {
+  font-size: 44px;
+  display: block;
+  margin-bottom: 12px;
+  animation: float-crown 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(255,215,0,0.9)) drop-shadow(0 0 28px rgba(255,165,0,0.5));
+}
+
+@keyframes float-crown {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.title {
+  font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+  font-size: 40px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-shadow: 0 0 16px var(--gold), 0 0 40px rgba(255,215,0,0.4);
+  margin-bottom: 4px;
+}
+
+.titleSub {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.header::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 20px auto 0;
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* 탭 */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.tabs button {
+  flex: 1;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.tabs button[data-active="true"] {
+  background: rgba(0,255,136,0.1);
+  color: var(--neon);
+  border: 1px solid rgba(0,255,136,0.4);
+  text-shadow: 0 0 8px var(--neon);
+  box-shadow: 0 0 14px rgba(0,255,136,0.12);
+}
+
+/* 리스트 */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 64px;
+}
+
+/* 개별 아이템 */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.item:hover {
+  transform: translateX(4px);
+  border-color: var(--neon-mid);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 16px rgba(0,255,136,0.08);
+  animation: electric-border 0.12s steps(1) infinite;
+}
+
+/* 1위 */
+.item.rank1 {
+  border-color: rgba(255,215,0,0.5);
+  background: linear-gradient(135deg, rgba(255,215,0,0.07) 0%, var(--bg-card) 50%);
+  box-shadow: 0 0 20px rgba(255,215,0,0.12);
+}
+.item.rank1:hover {
+  border-color: rgba(255,215,0,0.8);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 0 24px rgba(255,215,0,0.2);
+}
+
+/* 2위 */
+.item.rank2 {
+  border-color: rgba(176,190,197,0.4);
+  background: linear-gradient(135deg, rgba(176,190,197,0.05) 0%, var(--bg-card) 50%);
+}
+.item.rank2:hover {
+  border-color: rgba(176,190,197,0.7);
+}
+
+/* 3위 */
+.item.rank3 {
+  border-color: rgba(205,127,50,0.4);
+  background: linear-gradient(135deg, rgba(205,127,50,0.05) 0%, var(--bg-card) 50%);
+}
+.item.rank3:hover {
+  border-color: rgba(205,127,50,0.7);
+}
+
+/* 왼쪽 컬러 바 */
+.rankBar {
+  width: 3px;
+  align-self: stretch;
+  background: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.rank1 .rankBar { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.rank2 .rankBar { background: var(--silver); }
+.rank3 .rankBar { background: var(--bronze); }
+
+.itemInner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  width: 100%;
+}
+
+/* 순위 번호 */
+.rankNum {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 900;
+  width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.rank1 .rankNum { color: var(--gold); text-shadow: 0 0 12px var(--gold); font-size: 20px; }
+.rank2 .rankNum { color: var(--silver); font-size: 18px; }
+.rank3 .rankNum { color: var(--bronze); font-size: 16px; }
+
+.medal {
+  font-size: 24px;
+  display: block;
+  animation: medal-glow 2s ease-in-out infinite;
+}
+.rank1 .medal { filter: drop-shadow(0 0 8px rgba(255,215,0,0.9)); animation: medal-spin 4s ease-in-out infinite; }
+.rank2 .medal { filter: drop-shadow(0 0 6px rgba(176,190,197,0.6)); }
+.rank3 .medal { filter: drop-shadow(0 0 6px rgba(205,127,50,0.6)); }
+
+@keyframes medal-spin {
+  0%, 100% { transform: rotate(-5deg) scale(1); }
+  50% { transform: rotate(5deg) scale(1.1); }
+}
+
+.info { flex: 1; min-width: 0; }
+.storyTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rank1 .storyTitle { color: #fff; }
+
+.categoryTag {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--neon);
+  border: 1px solid rgba(0,255,136,0.3);
+  background: rgba(0,255,136,0.07);
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+/* 점수 */
+.value {
+  text-align: right;
+  flex-shrink: 0;
+}
+.valueNum {
+  font-family: 'Orbitron', monospace;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--neon);
+  display: block;
+  text-shadow: 0 0 10px rgba(0,255,136,0.6);
+}
+.rank1 .valueNum {
+  font-size: 26px;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(255,215,0,0.8);
+}
+.rank2 .valueNum { color: var(--silver); text-shadow: none; font-size: 22px; }
+.rank3 .valueNum { color: var(--bronze); text-shadow: none; }
+
+.valueUnit {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* 1위 왕관 빛 효과 */
+.rank1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,0.6), transparent);
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 80px 0;
+  font-size: 14px;
+}

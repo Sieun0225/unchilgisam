@@ -1,0 +1,103 @@
+.title {
+  font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+  padding: 40px 0 28px;
+  color: var(--neon);
+  text-shadow: 0 0 12px var(--neon), 0 0 28px rgba(0,255,136,0.3);
+}
+
+.formWrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  position: relative;
+}
+.formWrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  opacity: 0.7;
+}
+
+.form {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--neon);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(0,255,136,0.5);
+}
+
+/* 슬라이더 섹션 */
+.sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(0,255,136,0.03);
+  border: 1px solid rgba(0,255,136,0.12);
+  border-radius: 6px;
+  padding: 22px;
+}
+
+.sliderTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.sliderLabel { font-size: 13px; font-weight: 700; color: var(--text); }
+.sliderVal {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(0,255,136,0.6);
+}
+.sliderHint { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
+
+.range {
+  width: 100%;
+  accent-color: var(--neon);
+  height: 4px;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.submit {
+  background: rgba(0,255,136,0.1);
+  color: var(--neon);
+  border: 1.5px solid rgba(0,255,136,0.5);
+  font-size: 15px;
+  font-weight: 900;
+  padding: 16px;
+  border-radius: 4px;
+  width: 100%;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px var(--neon);
+  box-shadow: 0 0 16px rgba(0,255,136,0.12);
+  transition: all 0.2s;
+}
+.submit:hover:not(:disabled) {
+  background: rgba(0,255,136,0.18);
+  box-shadow: 0 0 28px rgba(0,255,136,0.3);
+  transform: translateY(-2px);
+}
