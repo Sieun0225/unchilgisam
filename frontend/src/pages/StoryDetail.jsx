@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getStory, createVote, getVoteSummary } from "../api";
+import { getStory, createVote, getVoteSummary, deleteStory } from "../api";
 import styles from "./StoryDetail.module.css";
 
 const USER_ID = 1; // 임시 고정값
@@ -38,7 +38,14 @@ export default function StoryDetail() {
 
   return (
     <div className="container">
-      <button className={styles.back} onClick={() => navigate(-1)}>← 돌아가기</button>
+      <div className={styles.topBar}>
+        <button className={styles.back} onClick={() => navigate(-1)}>← 돌아가기</button>
+        <button className={styles.deleteBtn} onClick={async () => {
+          if (!confirm("정말 삭제할까요?")) return;
+          await deleteStory(story.id);
+          navigate("/");
+        }}>삭제</button>
+      </div>
 
       <div className={styles.card}>
       <div className={styles.cardInner}>
